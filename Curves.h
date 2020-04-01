@@ -16,15 +16,12 @@ namespace curves{
 	class Curve
 	{
 	public:
-		Curve(CurveType t);
+		Curve();
 		virtual ~Curve();
 
 		virtual Point GetPoint(const double t) const = 0;
 		virtual Point GetDerivative(const double t) const = 0;
-
-		CurveType GetType() const;
-	private:
-		CurveType type;
+		virtual CurveType GetType() const = 0;
 	};
 	
 	class Circle : public Curve
@@ -35,7 +32,7 @@ namespace curves{
 
 		Point GetPoint(const double t) const;
 		Point GetDerivative(const double t) const;
-
+		CurveType GetType() const;
 		double GetRadius() const;
 	private:
 		double r;
@@ -49,6 +46,7 @@ namespace curves{
 
 		Point GetPoint(const double t) const;
 		Point GetDerivative(const double t) const;
+		CurveType GetType() const;
 	private:
 		double rX;
 		double rY;
@@ -62,6 +60,7 @@ namespace curves{
 
 		Point GetPoint(const double t) const;
 		Point GetDerivative(const double t) const;
+		CurveType GetType() const;
 	private:
 		double r;
 		double step;

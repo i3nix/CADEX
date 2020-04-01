@@ -8,19 +8,13 @@ namespace curves
 {
 	//Curve
 
-	Curve::Curve(CurveType t) : type(t) {}
+	Curve::Curve() {}
 	
 	Curve::~Curve() {}
 
-	CurveType Curve::GetType() const
-	{
-		return type;
-	}
-
-
 	//Circle
 
-	Circle::Circle(const double radius) : r(radius), Curve(CurveType::CIRCLE)
+	Circle::Circle(const double radius) : r(radius)
 	{
 		if (radius <= 0)
 			throw "radii must be positive";
@@ -51,9 +45,14 @@ namespace curves
 		return r;
 	}
 
+	CurveType Circle::GetType() const
+	{
+		return CurveType::CIRCLE;
+	}
+
 	//Ellipse
 
-	Ellipse::Ellipse(const double radiiX, const double radiiY) : rX(radiiX), rY(radiiY), Curve(CurveType::ELLIPSE)
+	Ellipse::Ellipse(const double radiiX, const double radiiY) : rX(radiiX), rY(radiiY)
 	{
 		if (radiiX <= 0 || radiiY <= 0)
 			throw "radii must be positive";
@@ -77,13 +76,20 @@ namespace curves
 		p.z = 0;
 		return p;
 	}
+
+	CurveType Ellipse::GetType() const
+	{
+		return CurveType::ELLIPSE;
+	}
+
 	//Helix
 
-	Helix::Helix(const double radius, const double step) : r(radius), step(step), Curve(CurveType::HELIX)
+	Helix::Helix(const double radius, const double step) : r(radius), step(step)
 	{
 		if (radius <= 0)
 			throw "radii must be positive";
 	}
+
 	Helix::~Helix() {}
 
 	Point Helix::GetPoint(const double t) const
@@ -103,7 +109,12 @@ namespace curves
 		p.z = step / (2 * M_PI);
 		return p;
 	}
-	
+
+	CurveType Helix::GetType() const
+	{
+		return CurveType::HELIX;
+	}
+		
 	double CurveRandomizer::GetRadius()
 	{
 		static std::mt19937 gen((unsigned int)time(0));
