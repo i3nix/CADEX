@@ -45,11 +45,6 @@ namespace curves
 		return r;
 	}
 
-	CurveType Circle::GetType() const
-	{
-		return CurveType::CIRCLE;
-	}
-
 	//Ellipse
 
 	Ellipse::Ellipse(const double radiiX, const double radiiY) : rX(radiiX), rY(radiiY)
@@ -75,11 +70,6 @@ namespace curves
 		p.y = rY * cos(t);
 		p.z = 0;
 		return p;
-	}
-
-	CurveType Ellipse::GetType() const
-	{
-		return CurveType::ELLIPSE;
 	}
 
 	//Helix
@@ -108,11 +98,6 @@ namespace curves
 		p.y = r * cos(t);
 		p.z = step / (2 * M_PI);
 		return p;
-	}
-
-	CurveType Helix::GetType() const
-	{
-		return CurveType::HELIX;
 	}
 		
 	double CurveRandomizer::GetRadius()

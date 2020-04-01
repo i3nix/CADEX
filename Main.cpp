@@ -57,8 +57,10 @@ void Print(list<shared_ptr<curves::Curve> >& ListOfCurves)
 void Select(list<shared_ptr<curves::Curve> >& ListOfCurves, list<shared_ptr<curves::Circle> >& ListOfCircles)
 {
 	for (list<shared_ptr<curves::Curve> >::iterator it = ListOfCurves.begin(); it != ListOfCurves.end(); it++)
-		if ((*it)->GetType() == curves::CurveType::CIRCLE)
+	{
+		if (typeid(**it) == typeid(curves::Circle))
 			ListOfCircles.push_back(dynamic_pointer_cast<curves::Circle>(*it));
+	}
 }
 
 double Compute(list<shared_ptr<curves::Circle> >& ListOfCircles)
